@@ -7,6 +7,7 @@ import (
 
 	"github.com/technolingo/bookstore-users-api/models"
 	"github.com/technolingo/bookstore-users-api/services"
+	"github.com/technolingo/bookstore-users-api/utils"
 )
 
 // CreateUser creates a user object according to the payload
@@ -21,13 +22,18 @@ func CreateUser(c *gin.Context) {
 	// 	return
 	// }
 	if err := c.ShouldBindJSON(&user); err != nil {
-		// TODO: handle error
+		apiErr := utils.APIError{
+			Status:  400,
+			Error:   "BAD_REQUEST",
+			Message: "Invalid JSON body.",
+		}
+		c.JSON(apiErr.Status, apiErr)
 		return
 	}
 
 	result, err := services.CreateUser(&user)
 	if err != nil {
-		// TODO: handle error
+		c.JSON(err.Status, err)
 		return
 	}
 
