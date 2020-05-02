@@ -1,11 +1,11 @@
 package services
 
 import (
+	"github.com/technolingo/bookstore-users-api/errors"
 	"github.com/technolingo/bookstore-users-api/models"
-	"github.com/technolingo/bookstore-users-api/utils"
 )
 
 // CreateUser processes the buisness logic and creates the user
-func CreateUser(u *models.User) (*models.User, *utils.APIError) {
+func CreateUser(u *models.User) (*models.User, *errors.APIError) {
 	return &models.User{}, nil
 }
