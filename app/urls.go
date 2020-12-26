@@ -1,10 +1,12 @@
 package app
 
 import (
+	"github.com/gin-gonic/gin"
+
 	"github.com/technolingo/bookstore-users-api/controllers"
 )
 
-func mapUrls() {
+func mapUrls(router *gin.Engine) {
 	router.GET("/ping", controllers.Ping)
 
 	router.GET("/users/:user_id", controllers.RetrieveUser)

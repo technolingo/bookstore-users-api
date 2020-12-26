@@ -23,13 +23,13 @@ func CreateUser(c *gin.Context) {
 	// }
 	if err := c.ShouldBindJSON(&user); err != nil {
 		apiErr := errors.NewBadRequestError("Invalid JSON body!")
-		c.JSON(apiErr.Status, apiErr)
+		c.JSON(int(apiErr.Status), apiErr)
 		return
 	}
 
 	result, err := services.CreateUser(&user)
 	if err != nil {
-		c.JSON(err.Status, err)
+		c.JSON(int(err.Status), err)
 		return
 	}
 
